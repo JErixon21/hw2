@@ -85,7 +85,7 @@ Role.destroy_all
 # Generate models and tables, according to the domain model.
 # TODO!
 
-
+# I GENERATED THE MODELS IN THE TERMINAL AND THEN ADD THE COLUMNS IN THE MIGRATION FILES
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
@@ -264,6 +264,15 @@ puts ""
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
+movies = Movie.all
+for movie in movies
+  studio = Studio.find(movie["studio_id"])
+  title = movie["title"]
+  year = movie["year"]
+  rated = movie["rated"]
+  studio_name = studio["name"]
+  puts "#{title} #{year} #{rated} #{studio_name}"
+end
 
 # Prints a header for the cast output
 puts ""
@@ -273,3 +282,13 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+roles = Role.all
+for role in roles
+  movie = Movie.find(role["movie_id"])
+  actor = Actor.find(role["actor_id"])
+  movie_title = movie["title"]
+  actor_name = actor["name"]
+  character_name = role["character_name"]
+  puts "#{movie_title} #{actor_name} #{character_name}"
+end
